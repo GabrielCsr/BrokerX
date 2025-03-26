@@ -1,0 +1,12 @@
+{
+	"name": "BrokerX",
+	"description": "Biblioteca para comunicação simplificada com o RabbitMQ",
+	"version": "1.0.0",
+	"homepage": "https://github.com/GabrielCsr/BrokerX",
+	"mainsrc": "./src",
+	"projects": [],
+	"dependencies": {
+		"https://github.com/brendenwalker/delphi_amqp": ">0.0.0",
+		"https://github.com/danieleteti/delphistompclient": ">0.0.0"
+	}
+}

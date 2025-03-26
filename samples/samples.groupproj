@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A1A85FD9-A6A4-4030-A6FE-70FE2D4A362E}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="maintenance\Maintenance.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="producer\Producer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="consumer\Consumer.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Maintenance">
+        <MSBuild Projects="maintenance\Maintenance.dproj"/>
+    </Target>
+    <Target Name="Maintenance:Clean">
+        <MSBuild Projects="maintenance\Maintenance.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Maintenance:Make">
+        <MSBuild Projects="maintenance\Maintenance.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Producer">
+        <MSBuild Projects="producer\Producer.dproj"/>
+    </Target>
+    <Target Name="Producer:Clean">
+        <MSBuild Projects="producer\Producer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Producer:Make">
+        <MSBuild Projects="producer\Producer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Consumer">
+        <MSBuild Projects="consumer\Consumer.dproj"/>
+    </Target>
+    <Target Name="Consumer:Clean">
+        <MSBuild Projects="consumer\Consumer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Consumer:Make">
+        <MSBuild Projects="consumer\Consumer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Maintenance;Producer;Consumer"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Maintenance:Clean;Producer:Clean;Consumer:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Maintenance:Make;Producer:Make;Consumer:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

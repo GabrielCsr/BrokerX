@@ -1,0 +1,22 @@
+{
+	"hash": "d41d8cd98f00b204e9800998ecf8427e",
+	"updated": "2025-03-25T21:25:12.9135294-03:00",
+	"installedModules": {
+		"https://github.com/brendenwalker/delphi_amqp": {
+			"name": "delphi_amqp",
+			"version": "main",
+			"hash": "79302f7430cedb3e714a25e186da69a2",
+			"artifacts": {},
+			"failed": false,
+			"changed": false
+		},
+		"https://github.com/danieleteti/delphistompclient": {
+			"name": "delphistompclient",
+			"version": "master",
+			"hash": "cb6937b7758328924988f916cc4ddbbb",
+			"artifacts": {},
+			"failed": false,
+			"changed": false
+		}
+	}
+}
