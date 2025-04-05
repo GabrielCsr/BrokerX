@@ -14,6 +14,7 @@ type
     procedure Connect;
     procedure Disconnect;
     function Channel: IAMQPChannel;
+    function Connected: Boolean;
   end;
 
   TAMQPConnection = class(TInterfacedObject, IAMQPConnection)
@@ -31,6 +32,7 @@ type
     procedure Connect;
     procedure Disconnect;
     function Channel: IAMQPChannel;
+    function Connected: Boolean;
   end;
 
 implementation
@@ -51,6 +53,11 @@ begin
     Exit;
 
   FConnection.Connect;
+end;
+
+function TAMQPConnection.Connected: Boolean;
+begin
+  Result := FConnection.IsOpen;
 end;
 
 constructor TAMQPConnection.Create;

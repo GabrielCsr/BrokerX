@@ -53,19 +53,9 @@ begin
 end;
 
 class function TConnection.NewStompConnected: IStompConnection;
-var
-  LConfig: IConfiguration;
 begin
   try
-    LConfig := TConfiguration.New(ctSTOMP);
-
-    Result := TStompConnection
-              .New
-              .Host(LConfig.Host)
-              .Port(LConfig.Port)
-              .User(LConfig.User)
-              .Password(LConfig.Password)
-              .Connect;
+    Result := FInstanceSTOMP.Prototype;
   except
     On E: Exception do
       raise Exception.Create('problems connecting to STOMP. ' +

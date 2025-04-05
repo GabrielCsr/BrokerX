@@ -14,11 +14,16 @@ type
     function Connect: IStompConnection;
     function Disconnect: IStompConnection;
     function Connection: IStompClient;
+    function Prototype: IStompConnection;
   end;
 
   TStompConnection = class(TInterfacedObject, IStompConnection)
   private
     FStompClient: IStompClient;
+    FHost,
+    FUser,
+    FPassword: String;
+    FPort: Integer;
   public
     constructor Create;
     destructor Destroy; override;
@@ -30,6 +35,7 @@ type
     function Connect: IStompConnection;
     function Disconnect: IStompConnection;
     function Connection: IStompClient;
+    function Prototype: IStompConnection;
   end;
 
 implementation
@@ -77,8 +83,8 @@ end;
 function TStompConnection.Host(AValue: String): IStompConnection;
 begin
   Result := Self;
-
-  FStompClient.SetHost(AValue);
+  FHost := AValue;
+  FStompClient.SetHost(FHost);
 end;
 
 class function TStompConnection.New: IStompConnection;
@@ -89,19 +95,32 @@ end;
 function TStompConnection.Password(AValue: String): IStompConnection;
 begin
   Result := Self;
-  FStompClient.SetPassword(AValue);
+  FPassword := AValue;
+  FStompClient.SetPassword(FPassword);
 end;
 
 function TStompConnection.Port(AValue: Integer): IStompConnection;
 begin
   Result := Self;
-  FStompClient.SetPort(AValue);
+  FPort := AValue;
+  FStompClient.SetPort(FPort);
+end;
+
+function TStompConnection.Prototype: IStompConnection;
+begin
+  Result := TStompConnection.New
+              .Host(FHost)
+              .Port(FPort)
+              .User(FUser)
+              .Password(FPassword)
+              .Connect;
 end;
 
 function TStompConnection.User(AValue: String): IStompConnection;
 begin
   Result := Self;
-  FStompClient.SetUserName(AValue);
+  FUser := AValue;
+  FStompClient.SetUserName(FUser);
 end;
 
 end.
