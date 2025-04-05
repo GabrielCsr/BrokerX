@@ -98,7 +98,10 @@ end;
 
 function TConfiguration.Host: String;
 begin
-  Result := IfThen(Assigned(FFile), FFile.ReadString(FSection, 'HOST', ''), FHost);
+  if Assigned(FFile) then
+    Result := FFile.ReadString(FSection, 'HOST', '')
+  else
+    Result := FHost;
 end;
 
 class function TConfiguration.New: iConfiguration;
@@ -114,7 +117,10 @@ end;
 
 function TConfiguration.Password: String;
 begin
-  Result := IfThen(Assigned(FFile), FFile.ReadString(FSection, 'PASSWORD', ''), FPassword);
+  if Assigned(FFile) then
+    FFile.ReadString(FSection, 'PASSWORD', '')
+  else
+    Result := FPassword;
 end;
 
 function TConfiguration.Password(AValue: String): IConfiguration;
@@ -145,7 +151,10 @@ end;
 
 function TConfiguration.User: String;
 begin
-  Result := IfThen(Assigned(FFile), FFile.ReadString(FSection, 'USER', ''), FUser);
+  if Assigned(FFile) then
+    FFile.ReadString(FSection, 'USER', '')
+  else
+    Result := FUser;
 end;
 
 end.

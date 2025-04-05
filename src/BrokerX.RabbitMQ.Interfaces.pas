@@ -50,6 +50,9 @@ type
     ['{F6B9262E-DC92-4D78-8106-B25605154604}']
     function Queue(AName: String): IQueue;
     function Exchange(AName: String): IExchange;
+    procedure Connect;
+    procedure Disconnect;
+    function Connected: Boolean;
   end;
 
 implementation
